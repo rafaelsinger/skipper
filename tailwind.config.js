@@ -23,6 +23,9 @@ module.exports = {
         'light-card': '#383838',
         'white-80': '#CACACA'
       },
+      screens: {
+        'tablet': "920px",
+      }
     }
   },
   plugins: [],

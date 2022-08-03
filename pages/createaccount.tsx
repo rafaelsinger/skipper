@@ -2,13 +2,9 @@ import React, { useState } from 'react'
 import Header from '../components/auth/Header'
 import Field from '../components/auth/Field'
 import Button from '../components/auth/Button'
+import { FormInput } from '../types';
 
 const createaccount = () => {
-
-    type FormInput = {
-        input: string,
-        valid: boolean
-    }
 
     const [email, setEmail] = useState<FormInput>({input: '', valid: false});
     const [password, setPassword] = useState<FormInput>({input: '', valid: false});
