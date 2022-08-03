@@ -10,6 +10,14 @@ export default async function handler(
   switch (req.method) {
     case 'GET': {
         // return get(req, res);
+        const { email } = req.body;
+        await dbConnect();
+        const user = await User.findOne({email: email});
+        if (user){
+          res.status(200).json(user);
+        } else {
+          console.log('no user');
+        }
     }
 
     case 'POST': {
