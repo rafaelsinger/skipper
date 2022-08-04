@@ -7,3 +7,4 @@ export type FormInput = {
     input: string,
     valid: boolean
 }
+
