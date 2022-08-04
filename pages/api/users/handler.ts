@@ -1,11 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import dbConnect from '../../../lib/dbConnect';
 import User from '../../../models/User'
-import { UserType } from '../../../types';
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<UserType>
+  res: NextApiResponse
 ) {
   switch (req.method) {
     case 'GET': {
@@ -23,10 +22,20 @@ export default async function handler(
     case 'POST': {
         const {email, uid} = req.body;
         await dbConnect();
+
+        try {
+          const userExist = await User.findOne({email: email});
+          if (userExist){
+            return res.status(422).json({error: "An account associated with that email already exists."})
+          }
+          const user = await User.create(req.body);
+          if (user){
+            res.status(200).json(user);
+          }
+        } catch (err: any) {
+          console.log(err);
+        }
       
-        const user = await User.create(req.body) as UserType;
-      
-        res.status(200).json(user);
     }
 
     case 'PUT': {

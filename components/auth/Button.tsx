@@ -24,7 +24,7 @@ const registerUser = async (email: string, password: string) => {
 
 const addUser = async (user: any) => {
     const res = await axios.post('http://localhost:3000/api/users/handler', {data: {email: user.email, uid: user.uid} })
-    return res;
+    console.log(res.data);
 }
 
 const Button = ({text, email, password}: ButtonProps) => {
