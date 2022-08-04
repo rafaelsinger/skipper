@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import Header from '../components/auth/Header'
-// import Field from '../components/auth/Field'
-import Button from '../components/auth/Button'
-import { FormInput } from '../types';
 import { Formik, Form, Field, ErrorMessage, FormikProps } from 'formik';
-import InputField from '../components/auth/InputField';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import { MdError } from 'react-icons/Md'
+import { IoIosCheckmarkCircle } from 'react-icons/Io'
 
 const createaccount = () => {
 
@@ -55,6 +52,9 @@ const createaccount = () => {
                                     </div>
                                 }
                             </ErrorMessage>
+                            <div className={(!props.errors && props.touched.email) ? 'absolute bottom-3.5 -right-10 text-success rounded-full z-10' : 'hidden'}></div>
+                                {/* <IoIosCheckmarkCircle size={25} />
+                            </div> */}
                         </div>
 
                         <div className='w-4/6 mx-auto flex flex-col relative mb-10'>
@@ -79,13 +79,6 @@ const createaccount = () => {
                 </Form>
                 )}
             </Formik>
-            {/* <div className='mb-10'>
-                <Field text='Email Address' type='email' setter={setEmail} />
-            </div>
-            <div className='mb-14'>
-                <Field text='Password' type='password' setter={setPassword} />\
-            </div>
-            <Button text='Sign Up' email={email} password={password} /> */}
         </div>
     </div>
   )
